@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Jkim-Hack/TeachMe/issues"
   },
-  "homepage": "https://github.com/Jkim-Hack/TeachMe#readme"
+  "homepage": "https://github.com/Jkim-Hack/TeachMe#readme",
+  "dependencies": {
+    "firebase-admin": "^9.4.0"
+  }
 }
