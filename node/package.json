@@ -1,0 +1,19 @@
+{
+  "name": "teachme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"no tests specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jkim-Hack/TeachMe.git"
+  },
+  "author": "Dev Patel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jkim-Hack/TeachMe/issues"
+  },
+  "homepage": "https://github.com/Jkim-Hack/TeachMe#readme"
+}
