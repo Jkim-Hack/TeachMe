@@ -1,5 +1,6 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
+
 admin.initializeApp();
 
 // Creates a new user with an HTTP request
@@ -38,4 +39,9 @@ exports.checkLogin = functions.https.onRequest(async (req, res) => {
         res.json({result: passwordCheck, uid: passwordCheck ? userRecord.uid : "none"});
     })
     .catch(() => res.json({result: false}));
+});
+
+// Moves specified file to a folder for the given user
+exports.moveFile = functions.https.onRequest(async (req, res) => {
+
 });
