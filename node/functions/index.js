@@ -18,19 +18,29 @@ exports.createUser = functions.https.onRequest(async (req, res) => {
 });
 
 // Creates a new document for each new user
-exports.createDoc = functions.auth.user().onCreate(user => {
+exports.createDoc = functions.auth.user().onCreate(async user => {
 
-    // Data to be stored in document
+    // Create data to be stored in document
     const userData = {
         name: user.displayName,
-        email: user.email
+        email: user.email,
+        classID: (await generateClassID())
     };
 
     // Add user data to new document
-    admin.firestore().doc(`users/${user.uid}`).set(userData)
-    .then(() => console.log("Document successfully written."))
-    .catch(console.error);
+    return admin.firestore().doc(`users/${user.uid}`).set(userData);
 });
+
+// Generates a unique class ID for each new user
+const generateClassID = async () => {
+
+    // Get class ID document and new ID number
+    const ID = admin.firestore().doc("users/_classID");
+    const num = (await ID.get()).data().last + 1;
+
+    // Increment class ID in database and return new ID
+    return num;
+}
 
 // Moves specified file to a folder for the given user
 exports.moveFile = functions.https.onRequest(async (req, res) => {
@@ -43,5 +53,3 @@ exports.moveFile = functions.https.onRequest(async (req, res) => {
     .then(() => res.json({result: true}))
     .catch(err => res.json({result: false, error: `${err}`}));
 });
-
-
