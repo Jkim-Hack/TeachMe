@@ -38,7 +38,8 @@ const generateClassID = async () => {
     const ID = admin.firestore().doc("users/_classID");
     const num = (await ID.get()).data().last + 1;
 
-    // Increment class ID in database and return new ID
+    // Update class ID in database and return new ID
+    await ID.update({last: num});
     return num;
 }
 
