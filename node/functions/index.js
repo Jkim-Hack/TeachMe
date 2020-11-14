@@ -1,9 +1,6 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
-const { storage } = require('firebase-admin');
 const path = require('path');
-const os = require('os');
-const fs = require('fs');
 
 admin.initializeApp();
 
@@ -30,7 +27,9 @@ exports.createDoc = functions.auth.user().onCreate(user => {
     };
 
     // Add user data to new document
-    return admin.firestore().doc(`users/${user.uid}`).set(userData);
+    admin.firestore().doc(`users/${user.uid}`).set(userData)
+    .then(() => console.log("Document successfully written."))
+    .catch(console.error);
 });
 
 // Checks if the given user credentials are valid
@@ -40,7 +39,7 @@ exports.checkLogin = functions.https.onRequest(async (req, res) => {
     admin.auth().getUserByEmail(req.query.email)
     .then(userRecord => {
         const passwordCheck = userRecord.toJSON().passwordHash.substring(userRecord.toJSON().passwordHash.indexOf("password=") + 9) === req.query.password;
-        res.json({result: passwordCheck, uid: passwordCheck ? userRecord.uid : "none"});
+        return res.json({result: passwordCheck, uid: passwordCheck ? userRecord.uid : "none"});
     })
     .catch(() => res.json({result: false}));
 });
