@@ -1,5 +1,6 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
+const { UserRecordMetadata } = require('firebase-functions/lib/providers/auth');
 admin.initializeApp();
 
 // Creates a new user with an HTTP request
@@ -26,4 +27,16 @@ exports.createDoc = functions.auth.user().onCreate(user => {
 
     // Add user data to new document
     return admin.firestore().doc(`users/${user.uid}`).set(userData);
+});
+
+// Checks if the given user credentials are valid
+exports.checkLogin = functions.https.onRequest(async (req, res) => {
+
+    // Search user email, return information if user is found
+    admin.auth().getUserByEmail(req.query.email)
+    .then(userRecord => {
+        const passwordCheck = userRecord.toJSON().passwordHash.substring(userRecord.toJSON().passwordHash.indexOf("password=") + 9) === req.query.password;
+        res.json({result: passwordCheck, uid: passwordCheck ? userRecord.uid : "none"});
+    })
+    .catch(error => res.json({result: false, error: `${error}`}));
 });
