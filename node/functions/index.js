@@ -13,8 +13,8 @@ exports.createUser = functions.https.onRequest(async (req, res) => {
         email: req.query.email,
         password: req.query.password
     })
-    .then(userRecord => res.json({result: true, uid: `${userRecord.uid}`}))
-    .catch(err => res.json({result: false, error: `Error creating new user: ${err}`}));
+        .then(userRecord => res.json({result: true, uid: `${userRecord.uid}`}))
+        .catch(err => res.json({result: false, error: `Error creating new user: ${err}`}));
 });
 
 // Creates a new document for each new user
@@ -43,6 +43,15 @@ const generateClassID = async () => {
     return num;
 }
 
+// Gets class ID given a user UID
+exports.getClassID = functions.https.onRequest(async (req, res) => {
+
+    // Attempt to get class ID
+    admin.firestore().doc(`users/${req.query.uid}`).get()
+        .then(doc => res.json({result: true, classID: doc.data().classID}))
+        .catch(err => res.json({result: false, error: `${err}`}));
+});
+
 // Moves specified file to a folder for the given user
 exports.moveFile = functions.https.onRequest(async (req, res) => {
 
@@ -51,6 +60,6 @@ exports.moveFile = functions.https.onRequest(async (req, res) => {
 
     // Rename given file
     admin.storage().bucket().file(req.query.name).rename(newFileName)
-    .then(() => res.json({result: true}))
-    .catch(err => res.json({result: false, error: `${err}`}));
+        .then(() => res.json({result: true}))
+        .catch(err => res.json({result: false, error: `${err}`}));
 });
