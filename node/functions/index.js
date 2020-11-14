@@ -14,7 +14,7 @@ exports.createUser = functions.https.onRequest(async (req, res) => {
         password: req.query.password
     })
     .then(userRecord => res.json({result: true, uid: `${userRecord.uid}`}))
-    .catch(error=> res.json({result: false, error: `Error creating new user: ${error}`}));
+    .catch(error => res.json({result: false, error: `Error creating new user: ${error}`}));
 });
 
 // Creates a new document for each new user
@@ -30,18 +30,6 @@ exports.createDoc = functions.auth.user().onCreate(user => {
     admin.firestore().doc(`users/${user.uid}`).set(userData)
     .then(() => console.log("Document successfully written."))
     .catch(console.error);
-});
-
-// Checks if the given user credentials are valid
-exports.checkLogin = functions.https.onRequest(async (req, res) => {
-
-    // Search user email, return information if user is found
-    admin.auth().getUserByEmail(req.query.email)
-    .then(userRecord => {
-        const passwordCheck = userRecord.toJSON().passwordHash.substring(userRecord.toJSON().passwordHash.indexOf("password=") + 9) === req.query.password;
-        return res.json({result: passwordCheck, uid: passwordCheck ? userRecord.uid : "none"});
-    })
-    .catch(() => res.json({result: false}));
 });
 
 // Moves specified file to a folder for the given user
