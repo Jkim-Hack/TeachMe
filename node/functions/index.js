@@ -11,8 +11,8 @@ exports.createUser = functions.https.onRequest(async (req, res) => {
         email: req.query.email,
         password: req.query.password
     })
-    .then(userRecord => res.json({result: `Successfully created new user: ${userRecord.uid}`}))
-    .catch(error=> res.json({result: `Error creating new user: ${error}`}));
+    .then(userRecord => res.json({result: true, uid: `${userRecord.uid}`}))
+    .catch(error=> res.json({result: false, error: `Error creating new user: ${error}`}));
 });
 
 // Creates a new document for each new user
@@ -37,5 +37,5 @@ exports.checkLogin = functions.https.onRequest(async (req, res) => {
         const passwordCheck = userRecord.toJSON().passwordHash.substring(userRecord.toJSON().passwordHash.indexOf("password=") + 9) === req.query.password;
         res.json({result: passwordCheck, uid: passwordCheck ? userRecord.uid : "none"});
     })
-    .catch(error => res.json({result: false, error: `${error}`}));
+    .catch(() => res.json({result: false}));
 });
