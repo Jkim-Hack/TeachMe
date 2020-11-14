@@ -1,5 +1,9 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
+const { storage } = require('firebase-admin');
+const path = require('path');
+const os = require('os');
+const fs = require('fs');
 
 admin.initializeApp();
 
@@ -44,4 +48,13 @@ exports.checkLogin = functions.https.onRequest(async (req, res) => {
 // Moves specified file to a folder for the given user
 exports.moveFile = functions.https.onRequest(async (req, res) => {
 
+    // Get necessary data
+    const bucket = admin.storage().bucket();
+    const fileName = req.query.name;
+    const newFileName = path.join(req.query.uid, fileName);
+
+    // Rename given file
+    bucket.file(fileName).rename(newFileName)
+    .then(() => res.json({result: true}))
+    .catch(error => res.json({result: false, error: `${error}`}));
 });
