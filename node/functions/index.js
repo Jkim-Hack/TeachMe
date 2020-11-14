@@ -1,6 +1,5 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
-const { UserRecordMetadata } = require('firebase-functions/lib/providers/auth');
 admin.initializeApp();
 
 // Creates a new user with an HTTP request
