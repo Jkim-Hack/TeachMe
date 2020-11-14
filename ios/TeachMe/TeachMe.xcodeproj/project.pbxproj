@@ -3,17 +3,21 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		6E0501BF255DC7F1002EFE42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0501BE255DC7F1002EFE42 /* AppDelegate.swift */; };
 		6E0501C1255DC7F1002EFE42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0501C0255DC7F1002EFE42 /* SceneDelegate.swift */; };
-		6E0501C3255DC7F1002EFE42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0501C2255DC7F1002EFE42 /* ViewController.swift */; };
 		6E0501C6255DC7F1002EFE42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E0501C4255DC7F1002EFE42 /* Main.storyboard */; };
 		6E0501C8255DC7F2002EFE42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E0501C7255DC7F2002EFE42 /* Assets.xcassets */; };
 		6E0501CB255DC7F2002EFE42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E0501C9255DC7F2002EFE42 /* LaunchScreen.storyboard */; };
 		6E0501D4255DCBA0002EFE42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E0501D3255DCBA0002EFE42 /* GoogleService-Info.plist */; };
+		6E05911F255F38B2007EE14E /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E05911E255F38B2007EE14E /* CameraView.swift */; };
+		6EC6ACA9255F58A10075F021 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC6ACA8255F58A10075F021 /* CameraViewController.swift */; };
+		6EC6ACB0255F60260075F021 /* HandGestureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC6ACAF255F60260075F021 /* HandGestureProcessor.swift */; };
+		6EC6ACB6256029170075F021 /* RecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC6ACB5256029170075F021 /* RecordButton.swift */; };
+		6EC6ACBA256092B40075F021 /* VideoEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC6ACB9256092B30075F021 /* VideoEditController.swift */; };
 		D84328C9E896AE6B16900DAC /* Pods_TeachMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 290980FA342D0487716055BE /* Pods_TeachMe.framework */; };
 /* End PBXBuildFile section */
 
@@ -24,12 +28,16 @@
 		6E0501BB255DC7F1002EFE42 /* TeachMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeachMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E0501BE255DC7F1002EFE42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6E0501C0255DC7F1002EFE42 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6E0501C2255DC7F1002EFE42 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6E0501C5255DC7F1002EFE42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6E0501C7255DC7F2002EFE42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E0501CA255DC7F2002EFE42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6E0501CC255DC7F2002EFE42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6E0501D3255DCBA0002EFE42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6E05911E255F38B2007EE14E /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		6EC6ACA8255F58A10075F021 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		6EC6ACAF255F60260075F021 /* HandGestureProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandGestureProcessor.swift; sourceTree = "<group>"; };
+		6EC6ACB5256029170075F021 /* RecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButton.swift; sourceTree = "<group>"; };
+		6EC6ACB9256092B30075F021 /* VideoEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,7 +58,6 @@
 				3CEE109A9E23023E6AE92EB4 /* Pods-TeachMe.debug.xcconfig */,
 				3ED97F79DAE8EAD181373123 /* Pods-TeachMe.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -75,16 +82,60 @@
 		6E0501BD255DC7F1002EFE42 /* TeachMe */ = {
 			isa = PBXGroup;
 			children = (
+				6EC6ACB42560289D0075F021 /* Widgets */,
+				6E05911D255F388D007EE14E /* Storyboard */,
+				6E05911C255F382E007EE14E /* Controllers */,
+				6E05911B255F3824007EE14E /* Views */,
+				6E05910F255EE4A3007EE14E /* Camera */,
 				6E0501D3255DCBA0002EFE42 /* GoogleService-Info.plist */,
 				6E0501BE255DC7F1002EFE42 /* AppDelegate.swift */,
 				6E0501C0255DC7F1002EFE42 /* SceneDelegate.swift */,
-				6E0501C2255DC7F1002EFE42 /* ViewController.swift */,
-				6E0501C4255DC7F1002EFE42 /* Main.storyboard */,
 				6E0501C7255DC7F2002EFE42 /* Assets.xcassets */,
-				6E0501C9255DC7F2002EFE42 /* LaunchScreen.storyboard */,
 				6E0501CC255DC7F2002EFE42 /* Info.plist */,
 			);
 			path = TeachMe;
+			sourceTree = "<group>";
+		};
+		6E05910F255EE4A3007EE14E /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				6EC6ACAF255F60260075F021 /* HandGestureProcessor.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		6E05911B255F3824007EE14E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6E05911E255F38B2007EE14E /* CameraView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		6E05911C255F382E007EE14E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6EC6ACA8255F58A10075F021 /* CameraViewController.swift */,
+				6EC6ACB9256092B30075F021 /* VideoEditController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		6E05911D255F388D007EE14E /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				6E0501C4255DC7F1002EFE42 /* Main.storyboard */,
+				6E0501C9255DC7F2002EFE42 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		6EC6ACB42560289D0075F021 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				6EC6ACB5256029170075F021 /* RecordButton.swift */,
+			);
+			path = Widgets;
 			sourceTree = "<group>";
 		};
 		EC6B464E0A5525024180A826 /* Frameworks */ = {
@@ -210,9 +261,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E0501C3255DC7F1002EFE42 /* ViewController.swift in Sources */,
+				6EC6ACB0255F60260075F021 /* HandGestureProcessor.swift in Sources */,
+				6E05911F255F38B2007EE14E /* CameraView.swift in Sources */,
+				6EC6ACB6256029170075F021 /* RecordButton.swift in Sources */,
 				6E0501BF255DC7F1002EFE42 /* AppDelegate.swift in Sources */,
 				6E0501C1255DC7F1002EFE42 /* SceneDelegate.swift in Sources */,
+				6EC6ACBA256092B40075F021 /* VideoEditController.swift in Sources */,
+				6EC6ACA9255F58A10075F021 /* CameraViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
