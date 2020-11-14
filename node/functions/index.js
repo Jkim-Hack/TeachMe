@@ -14,7 +14,7 @@ exports.createUser = functions.https.onRequest(async (req, res) => {
         password: req.query.password
     })
     .then(userRecord => res.json({result: true, uid: `${userRecord.uid}`}))
-    .catch(error => res.json({result: false, error: `Error creating new user: ${error}`}));
+    .catch(err => res.json({result: false, error: `Error creating new user: ${err}`}));
 });
 
 // Creates a new document for each new user
@@ -35,13 +35,13 @@ exports.createDoc = functions.auth.user().onCreate(user => {
 // Moves specified file to a folder for the given user
 exports.moveFile = functions.https.onRequest(async (req, res) => {
 
-    // Get necessary data
-    const bucket = admin.storage().bucket();
-    const fileName = req.query.name;
+    // Create new file name
     const newFileName = path.join(req.query.uid, fileName);
 
     // Rename given file
-    bucket.file(fileName).rename(newFileName)
+    admin.storage().bucket().file(req.query.name).rename(newFileName)
     .then(() => res.json({result: true}))
-    .catch(error => res.json({result: false, error: `${error}`}));
+    .catch(err => res.json({result: false, error: `${err}`}));
 });
+
+
