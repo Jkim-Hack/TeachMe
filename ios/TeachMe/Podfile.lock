@@ -158,6 +158,7 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
+  - ABVideoRangeSlider-SWIFT-5 (1.0.1)
   - BoringSSL-GRPC (0.0.3):
     - BoringSSL-GRPC/Implementation (= 0.0.3)
     - BoringSSL-GRPC/Interface (= 0.0.3)
@@ -213,6 +214,7 @@ PODS:
     - FirebaseAuthInterop (~> 1.1)
     - FirebaseCore (~> 6.6)
     - GTMSessionFetcher/Core (~> 1.1)
+  - FloatingPanel (2.0.1)
   - GoogleDataTransport (6.0.0)
   - GoogleDataTransportCCTSupport (3.0.0):
     - GoogleDataTransport (~> 6.0)
@@ -258,14 +260,17 @@ PODS:
   - PromisesObjC (1.2.8)
 
 DEPENDENCIES:
+  - ABVideoRangeSlider-SWIFT-5
   - Firebase/Auth
   - Firebase/Firestore
   - Firebase/Storage
   - FirebaseFirestoreSwift
+  - FloatingPanel
 
 SPEC REPOS:
   trunk:
     - abseil
+    - ABVideoRangeSlider-SWIFT-5
     - BoringSSL-GRPC
     - Firebase
     - FirebaseAuth
@@ -276,6 +281,7 @@ SPEC REPOS:
     - FirebaseFirestore
     - FirebaseFirestoreSwift
     - FirebaseStorage
+    - FloatingPanel
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
@@ -288,6 +294,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   abseil: 18063d773f5366ff8736a050fe035a28f635fd27
+  ABVideoRangeSlider-SWIFT-5: c21c833936c1f568823302666308d7076266f1ba
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
   Firebase: 585ae467b3edda6a5444e788fda6888f024d8d6f
   FirebaseAuth: e50319ecc114acf93c2b9581e15d6604ddd7eeb2
@@ -298,6 +305,7 @@ SPEC CHECKSUMS:
   FirebaseFirestore: f5c1798bf8ab3f7ce96adb5f259eed8c698941fd
   FirebaseFirestoreSwift: 2c46dbc1156db97dc4f6dd798d4f5b57b9c7fab6
   FirebaseStorage: f4f39ae834a7145963b913f54e2f24a9db1d8fac
+  FloatingPanel: 579a5ac0154f923a9d7302c4f13dbc0268511c92
   GoogleDataTransport: 061fe7d9b476710e3cd8ea51e8e07d8b67c2b420
   GoogleDataTransportCCTSupport: 0f39025e8cf51f168711bd3fb773938d7e62ddb5
   GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
@@ -308,6 +316,6 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
 
-PODFILE CHECKSUM: 18038aec55be9e399db12f20da657dad0ac5801b
+PODFILE CHECKSUM: b1db7c38e5543712ec6af0d3b77c112f399ca522
 
 COCOAPODS: 1.9.1

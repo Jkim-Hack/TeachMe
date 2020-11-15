@@ -17,7 +17,20 @@
 		6EC6ACA9255F58A10075F021 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC6ACA8255F58A10075F021 /* CameraViewController.swift */; };
 		6EC6ACB0255F60260075F021 /* HandGestureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC6ACAF255F60260075F021 /* HandGestureProcessor.swift */; };
 		6EC6ACB6256029170075F021 /* RecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC6ACB5256029170075F021 /* RecordButton.swift */; };
-		6EC6ACBA256092B40075F021 /* VideoEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC6ACB9256092B30075F021 /* VideoEditController.swift */; };
+		6EC6ACDF2560A74D0075F021 /* VideoEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC6ACDE2560A74D0075F021 /* VideoEditController.swift */; };
+		6EC6ACE22560ABE40075F021 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC6ACE12560ABE40075F021 /* VideoView.swift */; };
+		6EC6AD1A256120CC0075F021 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC6AD19256120CC0075F021 /* ImagePickerController.swift */; };
+		6EC6AD1D2561238B0075F021 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC6AD1C2561238B0075F021 /* SignupViewController.swift */; };
+		6EC6AD20256123AD0075F021 /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC6AD1F256123AD0075F021 /* SigninViewController.swift */; };
+		6EC6AD24256123D00075F021 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC6AD23256123D00075F021 /* User.swift */; };
+		6EC6AD28256123F50075F021 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC6AD27256123F50075F021 /* Constants.swift */; };
+		6EC6AD2B2561240C0075F021 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC6AD2A2561240C0075F021 /* Globals.swift */; };
+		6EC6AD2E25612C3E0075F021 /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC6AD2D25612C3E0075F021 /* MainMenuController.swift */; };
+		6EC6AD3125612E3F0075F021 /* JoinViewClassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC6AD3025612E3F0075F021 /* JoinViewClassController.swift */; };
+		6EC6AD3A256135430075F021 /* AnnotatedPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC6AD39256135430075F021 /* AnnotatedPhotoCell.swift */; };
+		6EC6AD3E256135730075F021 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC6AD3D256135730075F021 /* Photo.swift */; };
+		6EC6AD42256138E40075F021 /* RoundedCornersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC6AD41256138E40075F021 /* RoundedCornersView.swift */; };
+		6EC6AD45256158100075F021 /* LandscapeAVPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC6AD44256158100075F021 /* LandscapeAVPlayerController.swift */; };
 		D84328C9E896AE6B16900DAC /* Pods_TeachMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 290980FA342D0487716055BE /* Pods_TeachMe.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +50,20 @@
 		6EC6ACA8255F58A10075F021 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		6EC6ACAF255F60260075F021 /* HandGestureProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandGestureProcessor.swift; sourceTree = "<group>"; };
 		6EC6ACB5256029170075F021 /* RecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButton.swift; sourceTree = "<group>"; };
-		6EC6ACB9256092B30075F021 /* VideoEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditController.swift; sourceTree = "<group>"; };
+		6EC6ACDE2560A74D0075F021 /* VideoEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditController.swift; sourceTree = "<group>"; };
+		6EC6ACE12560ABE40075F021 /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
+		6EC6AD19256120CC0075F021 /* ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
+		6EC6AD1C2561238B0075F021 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		6EC6AD1F256123AD0075F021 /* SigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
+		6EC6AD23256123D00075F021 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		6EC6AD27256123F50075F021 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		6EC6AD2A2561240C0075F021 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		6EC6AD2D25612C3E0075F021 /* MainMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuController.swift; sourceTree = "<group>"; };
+		6EC6AD3025612E3F0075F021 /* JoinViewClassController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewClassController.swift; sourceTree = "<group>"; };
+		6EC6AD39256135430075F021 /* AnnotatedPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotatedPhotoCell.swift; sourceTree = "<group>"; };
+		6EC6AD3D256135730075F021 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		6EC6AD41256138E40075F021 /* RoundedCornersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornersView.swift; sourceTree = "<group>"; };
+		6EC6AD44256158100075F021 /* LandscapeAVPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeAVPlayerController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +108,9 @@
 		6E0501BD255DC7F1002EFE42 /* TeachMe */ = {
 			isa = PBXGroup;
 			children = (
+				6EC6AD3C2561356A0075F021 /* Models */,
+				6EC6AD332561319D0075F021 /* Layouts */,
+				6EC6AD22256123C70075F021 /* User */,
 				6EC6ACB42560289D0075F021 /* Widgets */,
 				6E05911D255F388D007EE14E /* Storyboard */,
 				6E05911C255F382E007EE14E /* Controllers */,
@@ -92,6 +121,8 @@
 				6E0501C0255DC7F1002EFE42 /* SceneDelegate.swift */,
 				6E0501C7255DC7F2002EFE42 /* Assets.xcassets */,
 				6E0501CC255DC7F2002EFE42 /* Info.plist */,
+				6EC6AD27256123F50075F021 /* Constants.swift */,
+				6EC6AD2A2561240C0075F021 /* Globals.swift */,
 			);
 			path = TeachMe;
 			sourceTree = "<group>";
@@ -108,6 +139,9 @@
 			isa = PBXGroup;
 			children = (
 				6E05911E255F38B2007EE14E /* CameraView.swift */,
+				6EC6ACE12560ABE40075F021 /* VideoView.swift */,
+				6EC6AD39256135430075F021 /* AnnotatedPhotoCell.swift */,
+				6EC6AD41256138E40075F021 /* RoundedCornersView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -116,7 +150,13 @@
 			isa = PBXGroup;
 			children = (
 				6EC6ACA8255F58A10075F021 /* CameraViewController.swift */,
-				6EC6ACB9256092B30075F021 /* VideoEditController.swift */,
+				6EC6ACDE2560A74D0075F021 /* VideoEditController.swift */,
+				6EC6AD19256120CC0075F021 /* ImagePickerController.swift */,
+				6EC6AD1C2561238B0075F021 /* SignupViewController.swift */,
+				6EC6AD1F256123AD0075F021 /* SigninViewController.swift */,
+				6EC6AD2D25612C3E0075F021 /* MainMenuController.swift */,
+				6EC6AD3025612E3F0075F021 /* JoinViewClassController.swift */,
+				6EC6AD44256158100075F021 /* LandscapeAVPlayerController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -136,6 +176,29 @@
 				6EC6ACB5256029170075F021 /* RecordButton.swift */,
 			);
 			path = Widgets;
+			sourceTree = "<group>";
+		};
+		6EC6AD22256123C70075F021 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				6EC6AD23256123D00075F021 /* User.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		6EC6AD332561319D0075F021 /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Layouts;
+			sourceTree = "<group>";
+		};
+		6EC6AD3C2561356A0075F021 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6EC6AD3D256135730075F021 /* Photo.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		EC6B464E0A5525024180A826 /* Frameworks */ = {
@@ -262,12 +325,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EC6ACB0255F60260075F021 /* HandGestureProcessor.swift in Sources */,
+				6EC6AD1A256120CC0075F021 /* ImagePickerController.swift in Sources */,
+				6EC6AD20256123AD0075F021 /* SigninViewController.swift in Sources */,
+				6EC6AD42256138E40075F021 /* RoundedCornersView.swift in Sources */,
+				6EC6AD1D2561238B0075F021 /* SignupViewController.swift in Sources */,
 				6E05911F255F38B2007EE14E /* CameraView.swift in Sources */,
 				6EC6ACB6256029170075F021 /* RecordButton.swift in Sources */,
 				6E0501BF255DC7F1002EFE42 /* AppDelegate.swift in Sources */,
+				6EC6AD28256123F50075F021 /* Constants.swift in Sources */,
+				6EC6ACE22560ABE40075F021 /* VideoView.swift in Sources */,
+				6EC6AD45256158100075F021 /* LandscapeAVPlayerController.swift in Sources */,
+				6EC6AD24256123D00075F021 /* User.swift in Sources */,
 				6E0501C1255DC7F1002EFE42 /* SceneDelegate.swift in Sources */,
-				6EC6ACBA256092B40075F021 /* VideoEditController.swift in Sources */,
+				6EC6AD3E256135730075F021 /* Photo.swift in Sources */,
 				6EC6ACA9255F58A10075F021 /* CameraViewController.swift in Sources */,
+				6EC6AD3A256135430075F021 /* AnnotatedPhotoCell.swift in Sources */,
+				6EC6AD2B2561240C0075F021 /* Globals.swift in Sources */,
+				6EC6AD3125612E3F0075F021 /* JoinViewClassController.swift in Sources */,
+				6EC6ACDF2560A74D0075F021 /* VideoEditController.swift in Sources */,
+				6EC6AD2E25612C3E0075F021 /* MainMenuController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

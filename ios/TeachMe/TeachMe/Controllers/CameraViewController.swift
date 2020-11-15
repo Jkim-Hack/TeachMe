@@ -50,10 +50,13 @@ class CameraViewController: UIViewController {
     typealias Timestamp = (start: CMTime, end: CMTime)
     
     private var allDetectedTimestamps = [Timestamp]()
-    private var detected = [Double : [Double : [CGPoint]]]()
+    private var detected = [Double : [Double : CGPoint]]()
+    
+    private var videoURL: URL!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        AppUtility.lockOrientation(.landscapeRight)
         view.layer.addSublayer(drawOverlay)
         // Detect two hands for dual hand detection
         handPoseRequest.maximumHandCount = 2
@@ -67,7 +70,6 @@ class CameraViewController: UIViewController {
         super.viewDidAppear(animated)
         do {
             if cameraFeedSession == nil {
-                AppUtility.lockOrientation(.landscapeRight)
                 cameraView.previewLayer.videoGravity = .resizeAspectFill
                 try setupAVSession()
                 cameraView.previewLayer.session = cameraFeedSession
@@ -105,11 +107,15 @@ class CameraViewController: UIViewController {
         session.addInput(deviceInput)
         
         let dataOutput = AVCaptureVideoDataOutput()
-        let movieOutput = AVCaptureMovieFileOutput()
         
-        if session.canAddOutput(dataOutput) && session.canAddOutput(movieOutput) {
+        if session.canAddOutput(dataOutput) {
             session.addOutput(dataOutput)
-
+            let connection = dataOutput.connection(with: AVMediaType.video)!
+            print(connection.videoOrientation.rawValue)
+            if connection.isVideoOrientationSupported {
+                connection.videoOrientation = AVCaptureVideoOrientation.landscapeRight
+                print(connection.videoOrientation.rawValue)
+            }
             dataOutput.alwaysDiscardsLateVideoFrames = true
             dataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_420YpCbCr8BiPlanarFullRange)]
             dataOutput.setSampleBufferDelegate(self, queue: videoDataOutputQueue)
@@ -182,17 +188,24 @@ class CameraViewController: UIViewController {
         case .possibleOpenPalm, .possibleSidePalm:
             tipsColor = .orange
             if hasStartedTimer && (isDetecting || isHolding) {
-                let timestamp = self.time! - self.startDetectTimestamp! - self.startTimestamp!
-                if timestamp.seconds.remainder(dividingBy: 0.2) <= 0.02 {
-                    print("DETECTED")
-                    detected[startDetectTimestamp!.seconds] = [timestamp.seconds: pointGroup]
+                print("DETECTED")
+                if (detected[startDetectTimestamp!.seconds] == nil) {
+                    detected[startDetectTimestamp!.seconds] = [Double : CGPoint]()
                 }
+                detected[startDetectTimestamp!.seconds]?.updateValue(points.middle![3], forKey: counter)
             }
         case .openPalm:
             tipsColor = .green
             if !hasStartedTimer && isRecording {
                 startTimer()
             } else if hasStartedTimer && isRecording {
+                if isHolding || isDetecting {
+                    print("DETECTED")
+                    if (detected[startDetectTimestamp!.seconds] == nil) {
+                        detected[startDetectTimestamp!.seconds] = [Double : CGPoint]()
+                    }
+                    detected[startDetectTimestamp!.seconds]?.updateValue(points.middle![3], forKey: counter)
+                }
                 if counter < 3 && counter > 0 && !isHolding {
                     self.isHolding = true
                     self.timerLabel.textColor = UIColor.white
@@ -210,17 +223,9 @@ class CameraViewController: UIViewController {
                         UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
                             self.timerLabel.alpha = 0.0
                         }, completion: { (finished: Bool) in
-                            self.counter = 0.0
                             self.timerLabel.alpha = 1.0
                             self.timerLabel.isHidden = true
                         })
-                    }
-                }
-                if isHolding || isDetecting {
-                    let timestamp = self.time! - self.startDetectTimestamp! - self.startTimestamp!
-                    if timestamp.seconds.remainder(dividingBy: 0.2) <= 0.02 {
-                        print("DETECTED")
-                        detected[startDetectTimestamp!.seconds] = [timestamp.seconds: pointGroup]
                     }
                 }
             }
@@ -228,7 +233,14 @@ class CameraViewController: UIViewController {
             tipsColor = .green
             if !hasStartedTimer && isRecording {
                 startTimer()
-            } else if hasStartedTimer && isRecording && !isHolding && !isDetecting {
+            } else if hasStartedTimer && isRecording {
+                if isHolding || isDetecting {
+                    print("DETECTED")
+                    if (detected[startDetectTimestamp!.seconds] == nil) {
+                        detected[startDetectTimestamp!.seconds] = [Double : CGPoint]()
+                    }
+                    detected[startDetectTimestamp!.seconds]?.updateValue(points.middle![3], forKey: counter)
+                }
                 if counter < 3 && counter > 0 && !isHolding {
                     self.isHolding = true
                     self.timerLabel.textColor = UIColor.white
@@ -246,16 +258,9 @@ class CameraViewController: UIViewController {
                         UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
                             self.timerLabel.alpha = 0.0
                         }, completion: { (finished: Bool) in
-                            self.counter = 0.0
                             self.timerLabel.alpha = 1.0
                             self.timerLabel.isHidden = true
                         })
-                    }
-                }
-                if isHolding || isDetecting {
-                    let timestamp = self.time! - self.startDetectTimestamp! - self.startTimestamp!
-                    if timestamp.seconds.remainder(dividingBy: 0.50) == 0 {
-                        detected[startDetectTimestamp!.seconds] = [timestamp.seconds: pointGroup]
                     }
                 }
             }
@@ -273,7 +278,6 @@ class CameraViewController: UIViewController {
                         UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
                             self.timerLabel.alpha = 0.0
                         }, completion: { (finished: Bool) in
-                            self.counter = 0.0
                             self.timerLabel.alpha = 1.0
                             self.timerLabel.isHidden = true
                         })
@@ -325,11 +329,22 @@ class CameraViewController: UIViewController {
     
     func stopTimer() {
         hasStartedTimer = false
+        counter = 0.0
         timer.invalidate()
     }
     
     @objc func updateTimer() {
         counter = counter + 0.1
+    }
+    
+    func handleMoveToEdit() {
+        if let nextViewController = storyboard?.instantiateViewController(identifier: Constants.VideoEditViewControllerIdentifier) as? VideoEditController {
+            nextViewController.modalPresentationStyle = .fullScreen
+            nextViewController.allDetectedTimestamps = allDetectedTimestamps
+            nextViewController.detected = detected
+            nextViewController.videoUrl = videoURL
+            self.present(nextViewController, animated: true)
+        }
     }
     
 }
@@ -358,7 +373,6 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             
             input.mediaTimeScale = CMTimeScale(bitPattern: 600)
             input.expectsMediaDataInRealTime = true
-            input.transform = CGAffineTransform(rotationAngle: .pi/2)
             let adapter = AVAssetWriterInputPixelBufferAdaptor(assetWriterInput: input, sourcePixelBufferAttributes: nil)
             if writer.canAdd(input) {
                 writer.add(input)
@@ -388,19 +402,35 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             isRecording = false
             isDoneRecording = false
             let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("\(currentFilename).mov")
+            self.videoURL = url
             assetWriterInput?.markAsFinished()
             assetWriter?.finishWriting {
                 print(url.relativePath)
+                let time = self.time! - self.startTimestamp!
+                let minutes = time.seconds / 60
+                let seconds = time.seconds.truncatingRemainder(dividingBy: 60)
                 /*
-                for timeStamp in self.allDetectedTimestamps {
-                    print("Detected at: start: \(timeStamp.start.seconds)" + ", " + "end: \(timeStamp.end.seconds)")
-                }
-                */
                 for detect in self.detected {
                     print("Detected: \(detect)")
                 }
+                for stamps in self.allDetectedTimestamps {
+                    print("TIMESTAMP: \(stamps.start.seconds)")
+                }
                 print(self.detected.count)
                 print(self.allDetectedTimestamps.count)
+                */
+                let formatter = DateFormatter()
+                formatter.dateFormat = "MM/dd/yyyy"
+                let today = formatter.date(from: formatter.string(from: Date()))
+                var strings: [String: [String:String]] = UserDefaults.standard.object(forKey: "dataKey") as? [String:[String: String]] ?? [:]
+                strings[self.currentFilename] = ["UUID": self.currentFilename,
+                                           "Title": "Lesson: Math",
+                                           "Date": formatter.string(from: today!),
+                                           "Duration": "\(time.seconds)s"]
+                UserDefaults.standard.set(strings, forKey: "dataKey")
+                DispatchQueue.main.async {
+                    self.handleMoveToEdit()
+                }
             }
         }
         
@@ -431,6 +461,7 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             guard let thumbTip = thumbPoints[.thumbTip], let thumbIP = thumbPoints[.thumbIP], let thumbMP = thumbPoints[.thumbMP], let thumbCMC = thumbPoints[.thumbCMC], let indexTip = indexPoints[.indexTip], let indexDip = indexPoints[.indexDIP], let indexPIP = indexPoints[.indexPIP], let indexMCP = indexPoints[.indexMCP], let middleTip = middlePoints[.middleTip], let middleDip = middlePoints[.middleDIP], let middlePIP = middlePoints[.middlePIP], let middleMCP = middlePoints[.middleMCP],let littleTip = littlePoints[.littleTip], let littleDip = littlePoints[.littleDIP], let littlePIP = littlePoints[.littlePIP], let littleMCP = littlePoints[.littleMCP], let ringTip = ringPoints[.ringTip], let ringDip = ringPoints[.ringDIP], let ringPIP = ringPoints[.ringPIP], let ringMCP = ringPoints[.ringMCP] else {
                 
                 if isHolding {
+                    stopTimer()
                     if detected[startDetectTimestamp!.seconds] != nil {
                         detected.remove(at: detected.index(forKey: startDetectTimestamp!.seconds)!)
                     }
@@ -451,6 +482,7 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             guard thumbTip.confidence > 0.3 && thumbIP.confidence > 0.3 && thumbMP.confidence > 0.3 && thumbCMC.confidence > 0.3 && indexTip.confidence > 0.3 && indexDip.confidence > 0.3 && indexPIP.confidence > 0.3 && indexMCP.confidence > 0.3 && middleTip.confidence > 0.3 && middleDip.confidence > 0.3 && middlePIP.confidence > 0.3 && middleMCP.confidence > 0.3 && ringTip.confidence > 0.3 && ringDip.confidence > 0.3 && ringPIP.confidence > 0.3 && ringMCP.confidence > 0.3 && littleTip.confidence > 0.3 && littleDip.confidence > 0.3 && littlePIP.confidence > 0.3 && littleMCP.confidence > 0.3 else {
                 
                 if isHolding {
+                    stopTimer()
                     if detected[startDetectTimestamp!.seconds] != nil {
                         detected.remove(at: detected.index(forKey: startDetectTimestamp!.seconds)!)
                     }

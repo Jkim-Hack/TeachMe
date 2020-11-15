@@ -56,4 +56,5 @@ class CameraView: UIView {
         overlayLayer.path = pointsPath.cgPath
         CATransaction.commit()
     }
+    
 }
