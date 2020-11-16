@@ -1,0 +1,6 @@
+framework module ABVideoRangeSlider_SWIFT_5 {
+  umbrella header "ABVideoRangeSlider-SWIFT-5-umbrella.h"
+
+  export *
+  module * { export * }
+}

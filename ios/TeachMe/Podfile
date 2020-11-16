@@ -1,0 +1,20 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'TeachMe' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for TeachMe
+  # Firebase
+  pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Storage'
+
+  # Video range slider
+  pod "ABVideoRangeSlider-SWIFT-5"
+    
+  # Overlay drawer
+  pod 'FloatingPanel'
+end
